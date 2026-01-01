@@ -3,6 +3,8 @@ const loadBtn = document.querySelector(".load-btn");
 const inputBox = document.querySelector(".input-box");
 const searchBtn = document.querySelector(".search-btn");
 const special = document.querySelector(".special");
+const downloadBtn = document.querySelector(".download-btn");
+const darkBox = document.querySelector(".darkbox");
 
 const apikey = "ZAEWtHlTYgw4QJ5Rj6YcJJ0iAJUK8IrTpD3PtFZGGMj0Uaa8UTk38vEy";
 
@@ -19,7 +21,14 @@ let getImage = (apiUrl) => {
         generateHtml(data.photos);
         loadBtn.textContent = "Load More";
         loadBtn.removeAttribute("disabled");
-    }).catch(()=> console.log("load unsuccessful API Failed!"));
+    }).catch(() =>
+        Swal.fire({
+            title: 'Loading unsuccessful API Failed',
+            icon: 'error',
+            customClass: {
+                popup: 'custom-alert',
+            }
+        }));
 };
 
 getImage(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
@@ -37,22 +46,22 @@ loadBtn.addEventListener("click", () => {
 
 
 let generateHtml = (images) => {
-    if(searchTerm === null) {
+    if (searchTerm === null) {
         imagesDiv.innerHTML = special.innerHTML;
-    } 
+    }
 
     imagesDiv.innerHTML += images.map(img =>
-        `<li class="custom-card">
-        <img src="${img.src.large2x}">
-        <div class="details">
-        <div class="name">
-        <i class="fa-regular fa-camera"></i>
-        <span>${img.photographer}</span>
-        </div>
-        <button class="btn download-btn">
-        <i class="fa-solid fa-download"></i>
-        </button>
-        </div>
+        `<li class="custom-card" onclick="enableDarkBox('${img.photographer}' , '${img.src.large2x}')">
+            <img src="${img.src.large2x}">
+            <div class="details">
+                <div class="name">
+                    <i class="fa-regular fa-camera"></i>
+                    <span>${img.photographer}</span>
+                </div>
+                <button onclick="enableDarkBox('${img.photographer}' , '${img.src.large2x}')" class="btn download-btn">
+                    <i class="fa-solid fa-download"></i>
+                </button>
+            </div>
         </li>`
     ).join("");
 };
@@ -82,13 +91,57 @@ function loadSearch() {
 
 
 let checkSearch = (e) => {
-    
+
     if (e.key === "Enter") {
-        loadSearch();     
+        loadSearch();
     }
 };
 
 
-inputBox.addEventListener("keyup" , checkSearch);
-inputBox.addEventListener("blur" , loadSearch);
-searchBtn.addEventListener("click" , loadSearch);
+
+
+
+function download(Url) {
+
+    fetch(Url).then(res => res.blob()).then(file => {
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(file);
+        a.download = new Date().getTime();
+        a.click();
+    }).catch(() =>
+        Swal.fire({
+            title: 'Failed to download image',
+            icon: 'error',
+            customClass: {
+                popup: 'custom-alert',
+            }
+        }));
+}
+
+
+
+
+
+function enableDarkBox(name, image) {
+    darkBox.style.display = "flex";
+    darkBox.querySelector("img").src = image;
+    darkBox.querySelector("span").textContent = name;
+    downloadBtn.setAttribute("data-image", image);
+}
+
+
+
+
+
+function disableDarkBox() {
+    darkBox.style.display = "none";
+}
+
+
+
+
+
+inputBox.addEventListener("keyup", checkSearch);
+inputBox.addEventListener("blur", loadSearch);
+searchBtn.addEventListener("click", loadSearch);
+downloadBtn.addEventListener("click", (e) => download(e.currentTarget.dataset.image));

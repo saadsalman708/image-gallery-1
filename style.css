@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins" , sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 
@@ -24,6 +24,10 @@ input {
     outline: none;
 }
 
+i {
+    font-size: 1.1rem;
+}
+
 
 
 
@@ -37,10 +41,9 @@ input {
     height: 100dvh;
     top: 0;
     background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
     justify-content: center;
     align-items: center;
-    display: none;  
+    display: none;
 }
 
 .darkbox-body {
@@ -55,6 +58,7 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 1rem;
     margin-bottom: 1rem;
 }
 
@@ -100,7 +104,10 @@ input {
     width: 100%;
 }
 
-.custom-card:hover .details , .custom-card:hover .details button , .custom-card:hover .details button , .custom-card:hover .name {
+.custom-card:hover .details,
+.custom-card:hover .details button,
+.custom-card:hover .details button,
+.custom-card:hover .name {
     transform: translateX(0%);
     transform: translateY(0%);
 }
@@ -109,12 +116,12 @@ input {
     width: 100%;
     position: absolute;
     bottom: 0;
-    background: linear-gradient(to top, rgb(0, 0, 0) , transparent 90%);
+    background: linear-gradient(to top, rgb(0, 0, 0), transparent 90%);
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 36px 12px;
+    padding: 36px 12px 24px 12px;
     transform: translateY(100%);
     transition: all .6s ease;
 }
@@ -124,22 +131,39 @@ input {
     color: #000;
     background-color: #fff;
     padding: 4px 6px;
-    transition: all .5s ease , transform .7s ease .1s;
+    border: 1px solid #fff;
+    transition: all .5s ease, transform .7s ease .1s;
 }
 
 .details button:hover {
     color: #fff;
     background-color: #000;
+    border: 1px solid #fff;
 }
 
 .custom-card .name {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 6px;
     transform: translateX(-120%);
     transition: all 1s ease;
 }
+
+
+
+
+
+
+.custom-alert {
+    border-radius: 1.5rem;
+}
+
+.custom-alert button {
+    background-color: green;
+}
+
+
 
 
 
@@ -150,7 +174,7 @@ input {
 
 @media (min-width: 1360px) {
 
-    .images  {
+    .images {
         max-width: 1200px;
         columns: 3 340px;
     }

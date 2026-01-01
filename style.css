@@ -9,7 +9,7 @@
 
 
 header {
-    height: 6rem;
+    min-height: 6rem;
     background-color: rgb(144, 247, 133);
 }
 
@@ -20,6 +20,7 @@ header h1 {
 
 input {
     width: 40vw;
+    border: none;
     outline: none;
 }
 
@@ -77,8 +78,13 @@ input {
 
 
 
+.gallery {
+    display: flex;
+    align-items: center;
+}
+
 .images {
-    columns: 5 340px;
+    columns: 5 240px;
     gap: 1.5rem;
 }
 
@@ -133,4 +139,19 @@ input {
     gap: 4px;
     transform: translateX(-120%);
     transition: all 1s ease;
+}
+
+
+
+
+
+
+
+
+@media (min-width: 1360px) {
+
+    .images  {
+        max-width: 1200px;
+        columns: 3 340px;
+    }
 }

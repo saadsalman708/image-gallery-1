@@ -36,8 +36,7 @@ getImage(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPa
 
 loadBtn.addEventListener("click", () => {
     currentPage++;
-    // yaha apiUrl ko declare nahi kia huwa phir bhi chal raha hai. MAGIC
-    apiUrl = `https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`;
+    let apiUrl = `https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`;
     getImage(apiUrl);
 });
 
@@ -70,6 +69,19 @@ let generateHtml = (images) => {
 
 
 
+function checkInput() {
+
+    let input = inputBox.value.trim();
+    
+    if (input === "") {
+        loadSearch();
+    }
+}
+
+
+
+
+
 function loadSearch() {
 
     let input = inputBox.value.trim();
@@ -81,8 +93,9 @@ function loadSearch() {
         getImage(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
         return;
     }
-
+    
     searchTerm = input;
+    
     getImage(`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`);
 }
 
@@ -142,6 +155,6 @@ function disableDarkBox() {
 
 
 inputBox.addEventListener("keyup", checkSearch);
-inputBox.addEventListener("blur", loadSearch);
+inputBox.addEventListener("blur", checkInput);
 searchBtn.addEventListener("click", loadSearch);
 downloadBtn.addEventListener("click", (e) => download(e.currentTarget.dataset.image));

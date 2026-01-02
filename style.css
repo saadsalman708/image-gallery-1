@@ -7,6 +7,11 @@
     font-family: "Poppins", sans-serif;
 }
 
+.wrapper {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: rgb(246, 255, 238);
+}
 
 header {
     min-height: 6rem;
@@ -51,7 +56,7 @@ i {
     width: 100%;
     max-width: 876px;
     border-radius: 12px;
-    padding: 1rem;
+    padding: 1.5rem;
 }
 
 .darkbox-body-head {
@@ -59,7 +64,7 @@ i {
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 
@@ -88,7 +93,7 @@ i {
 }
 
 .images {
-    columns: 5 240px;
+    columns: 4 240px;
     gap: 1.5rem;
 }
 
@@ -156,11 +161,19 @@ i {
 
 
 .custom-alert {
-    border-radius: 1.5rem;
+    border-radius: .8rem;
 }
 
 .custom-alert button {
-    background-color: green;
+    background-color: rgb(0, 128, 0);
+}
+
+.custom-alert button:hover {
+    background-color: rgb(32, 174, 32);
+}
+
+.custom-alert button:active {
+    background-color: rgb(57, 93, 62);
 }
 
 
@@ -171,8 +184,9 @@ i {
 
 
 
+/*  large screen par bhi 4 column ya gallery ki max-width aur kam  */
 
-@media (min-width: 1360px) {
+@media (min-width: 1440px) {
 
     .images {
         max-width: 1200px;

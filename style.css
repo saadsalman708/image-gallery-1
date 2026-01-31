@@ -193,3 +193,23 @@ i {
         columns: 3 340px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 786px) {
+
+    .custom-card .details,
+    .custom-card .details button,
+    .custom-card .details button,
+    .custom-card .name {
+        transform: translateX(0%);
+        transform: translateY(0%);
+    }
+}
